@@ -1,0 +1,53 @@
+################ Simple Bowling Score Tracking System ##################
+
+1. Introduction
+This README is intended to cover some high level design and how to get the system up and running.
+For coding documentation please refer to in inline javadoc in the java source code.
+
+The system can take two input methods, one of which is command line and another is the XML input.
+Below in "How to" will explain the accepted parameters when starts the game.
+
+The system is built and mentored by the test-driven approach, codes are tested with no more test
+cases can be though of, I hope so. The command line UI is a bit nasty including nested loops, due
+to the time's given I' leave it as it is.
+
+The simple modelling is shown below. a single live game can have multiple teams, each team can have multiple 
+players and each player in a particular game can have multiple (max 21) throws
+
+[Game] 1-----* [Teams] 1-----* [Players] 1-----*(21) [Balls]
+
+There is a factory that produces a service for each player that holds the stateful data for each game, and that service
+instance is unique to a player only. During the game each player will get same instance to keep tracking the scores.
+
+2. How to
+
+a. In the folder you will see a KunCai.jar that contains all the class byte code and the manifest is alreayd configured to run the main class.
+
+b. There is also an executable bash file called kuncai.sh file for UNIX system in the same folder, for windows please make sure java is installed.
+
+   kuncai.sh is an executable bash file, if not please issue command in the current folder.
+   chmod +x ./kuncai.sh
+
+   and it is "cat" by the KunCai.jar
+   cat ./KunCai.jar >> ./kuncai.sh
+   
+c. Game.xml this is a sample XML input if you'd like to save your time to key in the data in a command line. Please refer to below (d.) for how to run using
+   XML and Command line.
+
+d. kuncai.sh can take arguments
+   0) no argument is given - run the command line input screen.
+   1) one argument is given - if it equals to "XML" then the XML input builder will be triggered and the screen will run using the
+      default XML (./Game.xml), which sits in the same folder as the jar and this bash.
+   2) two arguments are given - #1: XML or something else; #2: a valid path to the XML input.
+   3) three or more arguments are given - always run command line input screen.
+
+
+3. note
+   For javadoc please refer to inline documents in the source file.
+
+
+
+wish list
+- re-factor command line UI to make it more flexible and maintainable.
+- use observe pattern to observe the user input and notify the interested parties.
+- bring game awareness into the code, the factory should give GameService instance for each player per game.
