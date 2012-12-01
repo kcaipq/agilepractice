@@ -39,10 +39,10 @@ public class Player implements Serializable {
 		return name;
 	}
 
-	@XmlElement
+	/*@XmlElement
 	public void setName(String name) {
 		this.name = name;
-	}
+	}*/
 
 	public int getScore() {
 		return score;

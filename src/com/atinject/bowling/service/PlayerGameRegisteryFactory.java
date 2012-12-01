@@ -24,7 +24,7 @@ public class PlayerGameRegisteryFactory {
 	private static PlayerGameRegisteryFactory instance;
 	private static FrameTypeResolver frameResolver = new FrameTypeResolverImpl();
 	
-	private Map<Player, GameService> factory = Collections
+	private final Map<Player, GameService> factory = Collections
 			.synchronizedMap(new HashMap<Player, GameService>());
 
 	/**
